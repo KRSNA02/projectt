@@ -1,3 +1,77 @@
 page-home {
+    .home {
+      //background-image: url("../../assets/imgs/Untitled.png");
+    }
 
-}
+    ion-card {
+      position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      width: 108% !important;
+      height: 250px !important;
+    margin: 0 !important;
+    left: -15px;
+  
+      
+    }
+    
+    #bgg{
+
+
+
+      filter: blur(3px);
+
+
+    }
+    .card-title {
+      position: absolute;
+      top: 60%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+  
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 76%;
+      width: 100%;
+      color: #fff;
+    }
+
+    #content {
+      position: relative;
+      margin-top: auto;
+      background-color: green;
+      box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.4);
+      /* padding-top:200px; */
+          height: 150px;
+        width: 100%;
+        display: block;
+        margin-top: 200px;
+        
+    }
+    
+    #profile-info {
+      position: absolute;
+      top: -12px;
+      right: -2px;
+      width: 100%;
+      z-index: 2;
+      text-align: center;
+    }
+    
+    #profile-image {
+      display: block;
+      border-radius: 120px;
+      border: 1px solid #fff;
+      width: 128px;
+      height: 128px;
+      margin: 30px auto 0;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+    }
+
+
+  }

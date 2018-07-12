@@ -1,18 +1,47 @@
-<!--
-  Generated template for the HomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>home</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar color="dark">
+      
+        <button ion-button menuToggle>
+          <ion-icon name="menu">
+  
+          </ion-icon>
+        </button>
+     
+      <ion-title>
+        Member Area
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="power"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+   
+  <ion-content class="home" padding>
+      <h3>Welcome inside, {{username}}!</h3>
+      <ion-card>
+          <img id="bgg" src="//tutorialsplane.com/wp-content/uploads/2017/01/ace-1807511__340.jpg"/>
+          <ion-avatar id="profile-info">
+              <img id="profile-image" src="assets/imgs/bala.jpg">
+            </ion-avatar>
+          
+          <div class="card-title">{{username}}</div>
+          <div class="card-subtitle">{{designation}}</div>
+        </ion-card>
+        <p>&nbsp;</p>
+      <h3> Fill TimeSheet:</h3>
+        
+          <div>From:{{fdate}}</div>
+        <div>  To:{{tdate}}</div>
+        <p>&nbsp;</p>
+        <h4>Fill Status:<h6>Partially Filled</h6></h4>
+        <h4>Submit Status:<h6>Not Submitted</h6></h4>
+  
+  
+  
+        
+        
+  
+    
+  </ion-content>

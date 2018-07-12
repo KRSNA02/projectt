@@ -6,13 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>pending</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar color="dark">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+              <ion-icon name="menu">
+              </ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title >PendingPage</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  <h4>Select a date from below to fill the timesheet</h4>
+          <ion-calendar [(ngModel)]="date"
+          [options]="options"
+          (onChange)="onChange()"
+          [type]="type"
+          [format]="YYYY-MM-DD">
+  </ion-calendar>
+  
+     
+  </ion-content>
+  

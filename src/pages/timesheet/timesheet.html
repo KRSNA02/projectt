@@ -1,18 +1,82 @@
-<!--
-  Generated template for the TimesheetPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>timesheet</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <ion-title>TIMESHEET</ion-title>
+      
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <div>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="txtsiz">{{color}}</ion-col>
+          <ion-col col-5></ion-col>
+          <ion-col col-3>
+            <ion-row align-right>
+            Total Hours</ion-row>
+            <ion-row class="txtsiz">{{add}}</ion-row></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            
+              <ion-select placeholder="WORK" [(ngModel)]="selctval" selectedText>
+                  <ion-option *ngFor="let work of works" value="{{work}}">{{work}}</ion-option>
+              </ion-select>
+            </ion-col>
+            
+            <ion-col>
+                <ion-select [(ngModel)]="selctime" placeholder="TIME" selectedText>
+                    <ion-option *ngFor="let time of times" value="{{time}}">{{time}}</ion-option>
+                </ion-select>
+          </ion-col>
+          
+              <ion-buttons end>
+                  <button ion-button (click)="additem()">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-buttons>      
+         
+        </ion-row>
+      </ion-grid>
+    
+     <ion-card>
+    <ion-grid>
+       <ion-row>
+         <ion-col>
+           <h1>TASKS</h1>
+        <ion-list>
+                <ion-item *ngFor="let todo of des">
+                    <h2>{{ todo }}    >></h2>
+                </ion-item>
+        </ion-list></ion-col> 
+        <ion-col>
+          <h1>HOURS</h1>
+            <ion-list>
+                    <ion-item *ngFor="let hour of hours">
+                        <h2>{{ hour }}</h2>
+                    </ion-item>
+            </ion-list></ion-col> </ion-row></ion-grid></ion-card>
+            <ion-grid>
+              <ion-row>
+                  <ion-col>
+                      <button ion-button round style="bottom:-150px; text-align:center; left:20px" (click)="save()">Save</button>
+                  </ion-col>
+                  <ion-col>
+                      <button ion-button round style="bottom:-150px; text-align:center; left:20px" (click)="submit()">Submit</button>
+                  </ion-col>
+  
+                </ion-row>
+  
+              </ion-grid>
+            </div>
+  </ion-content>
+  
