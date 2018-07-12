@@ -34,9 +34,13 @@
             </ion-col>
             
             <ion-col>
-                <ion-select [(ngModel)]="selctime" placeholder="TIME" selectedText>
+           <!--     <ion-select [(ngModel)]="selctime" placeholder="TIME" selectedText>
                     <ion-option *ngFor="let time of times" value="{{time}}">{{time}}</ion-option>
-                </ion-select>
+                </ion-select>-->
+                <ion-row>
+                <ion-input type="number" placeholder="Hours" name="hours" [(ngModel)]="selcthr" required></ion-input></ion-row>
+                <ion-row>
+                    <ion-input type="number" placeholder="Minutes" name="minutes" [(ngModel)]="selctmin" required></ion-input></ion-row>
           </ion-col>
           
               <ion-buttons end>
@@ -61,10 +65,19 @@
         <ion-col>
           <h1>HOURS</h1>
             <ion-list>
-                    <ion-item *ngFor="let hour of hours">
-                        <h2>{{ hour }}</h2>
+                <ion-item-sliding *ngFor="let hour of hours">
+ 
+                    <ion-item>
+                    {{hour}}
                     </ion-item>
-            </ion-list></ion-col> </ion-row></ion-grid></ion-card>
+                 
+                    <ion-item-options>
+                      <button danger (click)="removeItem(hour)"><ion-icon name="trash"></ion-icon> Delete</button>
+                    </ion-item-options>
+                  </ion-item-sliding>
+                 
+            </ion-list></ion-col>
+           </ion-row></ion-grid></ion-card>
             <ion-grid>
               <ion-row>
                   <ion-col>
