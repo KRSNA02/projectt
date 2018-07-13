@@ -5,6 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+  
 
   <ion-navbar color="dark">
     <ion-buttons start>
@@ -21,6 +22,12 @@
 
 
 <ion-content padding>
-  <p>HI</p>
+    <h4>Select a date from below to fill the timesheet</h4>
+    <ion-calendar [(ngModel)]="date"
+    [options]="options"
+    (onChange)="onChange()"
+    [type]="type"
+    [format]="YYYY-MM-DD">
+</ion-calendar>
 
 </ion-content>

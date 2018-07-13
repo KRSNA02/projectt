@@ -34,32 +34,39 @@ public i:number;
 public a:number;
 public delw: string;
 public j:number;
-public flag:boolean;
+public flag:boolean=false;
 
 add = 0;
 
   additem()
-  {
-      this.des.forEach(element => {
-        if(element==this.selctval || element == ' ' || this.selctime == null)
+  { if(this.selctval == '' || this.selctmin=='' || this.selcthr==''){this.flag=true;}
+  else{
+      for(this.i=0;this.i<this.des.length;this.i++) {
+        if(this.des[this.i]==this.selctval)
        {
         this.flag=true;
-        
+        break;
        }
-       else{ 
-       
-         this.flag=false;
-        }
         
-      });
-      if(this.flag){}
+      }}
+      if(this.flag){
+        let alert = this.alertCtrl.create({
+          title: 'ERROR-DATA',
+          subTitle: 'Please Enter Correct values',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+        this.flag=false;
+      }
       else{
+        this.flag=false; 
       this.j= parseInt(this.selctmin)/60
         this.j=parseFloat(this.j.toFixed(2));
         this.selctime= parseInt(this.selcthr)+this.j;
         this.des.push(this.selctval);
         this.hours.push(this.selctime);
         this.add = this.add + this.selctime;
+        //this.flag=true; 
       }
               
           }

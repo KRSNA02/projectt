@@ -11,6 +11,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { TimesheetPage } from '../pages/timesheet/timesheet';
 import { ViewhistoryPage } from '../pages/viewhistory/viewhistory';
 
+
 import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,7 @@ export class MyApp {
     
       }
       gotoDash() {
-        this.nav.setRoot(ViewhistoryPage);
+        this.nav.setRoot(HistoryPage);
     
       }
       gotoPend() {
