@@ -34,18 +34,33 @@ public i:number;
 public a:number;
 public delw: string;
 public j:number;
+public flag:boolean;
 
 add = 0;
 
   additem()
   {
+      this.des.forEach(element => {
+        if(element==this.selctval || element == ' ' || this.selctime == null)
+       {
+        this.flag=true;
+        
+       }
+       else{ 
+       
+         this.flag=false;
+        }
+        
+      });
+      if(this.flag){}
+      else{
       this.j= parseInt(this.selctmin)/60
-      this.selctime= parseInt(this.selcthr)+this.j;
-      this.des.push(this.selctval);
-      this.hours.push(this.selctime);
-      this.add = this.add + this.selctime;
-      
-      
+        this.j=parseFloat(this.j.toFixed(2));
+        this.selctime= parseInt(this.selcthr)+this.j;
+        this.des.push(this.selctval);
+        this.hours.push(this.selctime);
+        this.add = this.add + this.selctime;
+      }
               
           }
         
