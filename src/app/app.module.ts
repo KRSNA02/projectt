@@ -15,6 +15,8 @@ import { ViewhistoryPage } from '../pages/viewhistory/viewhistory';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HttpClientModule } from '@angular/common/http'
 import { HomePageModule } from '../pages/home/home.module';
+import { ApiServiceProvider } from '../providers/api-service/api-service';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import { HomePageModule } from '../pages/home/home.module';
     SettingsPage,
     TimesheetPage,
     ViewhistoryPage,
+  
   ],
   imports: [
     BrowserModule,
     CalendarModule,
     HttpClientModule,
     HomePageModule,
+    
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -47,9 +51,11 @@ import { HomePageModule } from '../pages/home/home.module';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    ApiServiceProvider
   ]
 })
 export class AppModule {}

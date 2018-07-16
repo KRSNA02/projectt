@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,14 +23,16 @@ export class LoginPage {
   loading: Loading;
   registerCredentials = { email: '', password: '' };
   id: number;
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+  apiUrl = 'http://localhost:3000/api/EmployeeTables  ';
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient) { }
 
  
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (allowed) {        
-        this.nav.setRoot('HomePage');
+        this.nav.setRoot('HomePage',{
+          data: this.registerCredentials.email});
       } else {
         this.showError("Access Denied");
       }
@@ -87,7 +91,7 @@ export class LoginPage {
     });
     this.loading.present();
   }
- 
+  
   showError(text) {
     this.loading.dismiss();
  
@@ -98,4 +102,16 @@ export class LoginPage {
     });
     alert.present();
   }
+  getData() {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl).subscribe(data => {
+        resolve(data);
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+
 }
