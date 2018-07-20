@@ -20,14 +20,26 @@ export class AuthServiceProvider {
    }
  
 currentUser: User;
-cred_var={};
+cred_var:any;
  
   public login(credentials) {
     
-      new Promise(resolve => {
+      return new Promise(resolve => {
         this.http.get(this.credUrl+'/'+credentials.email).subscribe(data => {
           resolve(data);
           this.cred_var=data
+          console.log(this.cred_var.Password);
+          if (credentials.email === null || credentials.password === null) {
+            return Observable.throw("Please insert credentials");
+             } else {
+              return Observable.create(observer => {
+             
+              let access = (credentials.password === this.cred_var.Password && credentials.email === this.cred_var.EmpId);
+             this.currentUser = new User('BALA', 'bala@gmail.com');
+              observer.next(access);
+              observer.complete();
+            });
+          }
           console.log(this.cred_var);
         }, err => {
           console.log(err);
@@ -38,17 +50,7 @@ cred_var={};
 
 
 
-   if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-       } else {
-        return Observable.create(observer => {
-       
-        let access = (credentials.password === "pass" && credentials.email === "2550");
-       this.currentUser = new User('BALA', 'bala@gmail.com');
-        observer.next(access);
-        observer.complete();
-      });
-    }
+  
   }
   public getUserInfo() : User {
    return this.currentUser;

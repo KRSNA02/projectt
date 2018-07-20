@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { ApiServiceProvider } from '../../providers/api-service/api-service';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,27 +22,35 @@ import { Http, Response } from '@angular/http';
 })
 export class LoginPage {
   loading: Loading;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = {id: '', password: '' };
   id: number;
-  apiUrl = 'http://localhost:3000/api/EmployeeTables  ';
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient) { }
+  users:any;
+  apiUrl = 'http://localhost:3000/api/EmployeeTables';
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient, public api:ApiServiceProvider) {
+    
+  }
 
  
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
+  getUsers() {
+    this.api.getUsers(this.registerCredentials.id)
+    .then(data => {
+      this.users = data;
+      console.log(this.users);
+      console.log("hello222"+this.users.Name);
+      this.showLoading();
+      if(parseInt(this.users.EmpId) === parseInt(this.registerCredentials.id) && this.users.Password === this.registerCredentials.password)
+      {
+
         this.nav.setRoot('HomePage',{
-          data: this.registerCredentials.email});
-      } else {
+          data: this.registerCredentials.id});
+      }
+      else{
+        console.log(this.users.EmpId)
         this.showError("Access Denied");
       }
-    },
-    //  error => {
-      //  this.showError(error);
-   //   }
-    );
+    });
   }
+  
  forgot(){
 
   let alert = this.alertCtrl.create({

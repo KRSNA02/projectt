@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Button } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-
+import { ApiServiceProvider } from '../../providers/api-service/api-service';
 /**
  * Generated class for the TimesheetPage page.
  *
@@ -18,10 +18,19 @@ import { ToastController } from 'ionic-angular';
 export class TimesheetPage {
   
 color:Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController) {
+users: any; 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider) {
     this.color=navParams.get('data');
+  //  this.getUsers();
   }
-
+  //getUsers() {
+    //this.api.getUsers()
+    //.then(data => {
+     // this.users = data;
+      //console.log(this.users);
+      //console.log("hello222"+this.users.Name);
+    //});
+ // }
 public des=[];
 public hours=[];
 public selctval='';
