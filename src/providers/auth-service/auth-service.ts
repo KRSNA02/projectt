@@ -40,7 +40,6 @@ cred_var:any;
               observer.complete();
             });
           }
-          console.log(this.cred_var);
         }, err => {
           console.log(err);
         });
