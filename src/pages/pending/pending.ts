@@ -23,7 +23,7 @@ export class PendingPage {
   calendarOneWeek: String;
   @ViewChild(Nav) nav: Nav;
 
-public date: DatePipe;
+public date: Date;
 public type: string;
 public fyear=2018;
 public fmon=5;
@@ -100,7 +100,7 @@ onChange(){
   
 
   this.navCtrl.push(TimesheetPage, {
-    data: this.date});
+    data: this.date.getDate()});
   
 
 

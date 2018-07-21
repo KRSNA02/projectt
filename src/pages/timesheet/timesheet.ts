@@ -35,9 +35,11 @@ public poss={
 }
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider) {
     this.color=navParams.get('data');
+    console.log("Const time")
+    console.log(this.color)
     this.id=this.api.id1;
  
-  }
+  } 
 getUsers() {
   this.api.getUsersb(this.id)
   .then(data => {
@@ -49,16 +51,16 @@ getUsers() {
 
   });
  }
-public des=[];
-public hours=[];
+public hours=[0,0,0,0];
 public selctval='';
-public selctime:number;
-public selcthr='';
-public selctmin='';
+selctime=0;
+public selcthr=0;
+public selctmin=0;
 public works=["Health Check","Others","Meeting","OptIN"];
 public times=[1,2,3,4,5,6,7,8];
 public i:number;
 public a:number;
+public b:number;
 public delw: string;
 public j:number;
 public flag:boolean=false;
@@ -74,64 +76,79 @@ public savee={
   "Date": " "
 }
 add = 0;
-addtime(){
+addtime(abc){
+
+  this.b=this.works.indexOf(abc);
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      inputs: [
+        {
+          name: 'hour',
+          placeholder: 'Enter Hour'
+        },
+        {
+          name: 'minutes',
+          placeholder: 'Enter Minutes',
+          
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Add',
+          handler: data => {
+            if(data.hour==='')
+            {this.selcthr=0;
+            console.log(this.selcthr)}
+            else{
+            this.selcthr=parseInt(data.hour);
+            console.log(this.selcthr)}
+            if(data.minutes==='')
+            {this.selctmin=0;
+            console.log(this.selctmin)}
+            else{
+            this.selctmin=parseInt(data.minutes);
+            console.log(this.selctmin)}
+        
+            this.j= this.selctmin/60
+              this.j=parseFloat(this.j.toFixed(2));
+              console.log(this.j)
+              this.selctime= this.selcthr+this.j;
+              console.log(this.selctime);
+        
+              this.hours[this.b]=this.selctime;
+              this.add = this.add + this.selctime;
+        
+            }
+                    
+                }
+              
+        
+      ]
+    });
+    alert.present();
 
 
 
-
-  
 }
 
-  additem()
-  { if(this.selctval == '' || this.selctmin=='' || this.selcthr==''){this.flag=true;}
-  else{
-      for(this.i=0;this.i<this.des.length;this.i++) {
-        if(this.des[this.i]==this.selctval)
-       {
-        this.flag=true;
-        break;
-       }
-        
-      }}
-      if(this.flag){
-        let alert = this.alertCtrl.create({
-          title: 'ERROR-DATA',
-          subTitle: 'Please Enter Correct values',
-          buttons: ['Dismiss']
-        });
-        alert.present();
-        this.flag=false;
-      }
-      else{
-        this.flag=false; 
-      this.j= parseInt(this.selctmin)/60
-        this.j=parseFloat(this.j.toFixed(2));
-        this.selctime= parseInt(this.selcthr)+this.j;
-       //s this.des.push(this.selctval);
-        this.hours.push(this.selctime);
-        this.add = this.add + this.selctime;
-        //this.flag=true; 
-      }
-              
-          }
-        
-          removeItem(delh: any){
-          this.a =this.hours.indexOf(delh);
-          this.delw=this.des[this.a];
-          if(this.a!=-1)
-          {
-            this.des.splice(this.a,1);
-          }
-          if(this.a!=-1)
-          {
-            this.hours.splice(this.a,1);
-          }
-          this.add=this.add-delh;
+removeItem(delh: any){
+  this.a =this.hours.indexOf(delh);
+  if(this.a!=-1)
+  {
+    this.hours[this.a]=0;
+  }
+  this.add=this.add-delh;
+
+}
 
 
-
-
-          }
 save()
 {
 
@@ -216,6 +233,8 @@ submit()
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TimesheetPage');
+    console.log(this.color)
+
   }
 
   
