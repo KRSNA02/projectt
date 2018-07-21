@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Button } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
+import { HttpClient } from '@angular/common/http';
 /**
  * Generated class for the TimesheetPage page.
  *
@@ -33,11 +34,12 @@ public poss={
   "Date": "2018-9-25"
 
 }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider, public http: HttpClient) {
     this.color=navParams.get('data');
     console.log("Const time")
     console.log(this.color)
     this.id=this.api.id1;
+    this.getUsers();
  
   } 
 getUsers() {
@@ -64,16 +66,18 @@ public b:number;
 public delw: string;
 public j:number;
 public flag:boolean=false;
+public urlres="http://localhost:3000/api/TimeSheetTables/";
 public savee={
-  "Name": " ",
+  "Name": "abc",
   "DefaultTask2": 0,
   "DefaultTask3": 0,
   "OtherTask": 0,
   "Status": 0,
   "TotalHours": 0,
-  "EmpId": 0,
   "DefaultTask1": 0,
-  "Date": " "
+  "Date": "string",
+  "EmpId": 0,
+  "GuId": "def"
 }
 add = 0;
 addtime(abc){
@@ -166,8 +170,17 @@ save()
         {
           text: 'Agree',
           handler: () => {
-            
-            this.getUsers();
+            this.savee.Date=String(this.color);
+            this.savee.EmpId=this.id;
+            this.savee.Status=1;
+            this.savee.TotalHours=this.add;
+            this.savee.DefaultTask1=this.hours[0];
+            this.savee.DefaultTask2=this.hours[1];
+            this.savee.DefaultTask3=this.hours[2];
+            this.savee.OtherTask=this.hours[3];
+            console.log("beforesave")
+            console.log(this.savee)
+            this.api.pushtime(this.savee,this.color);
             let toast = this.toastCtrl.create({
               message: 'Successfully Saved',
               duration: 3000,
@@ -234,6 +247,25 @@ submit()
   ionViewDidLoad() {
     console.log('ionViewDidLoad TimesheetPage');
     console.log(this.color)
+    new Promise(resolve => {
+      this.http.get(this.urlres+this.id+"%2B"+this.color).subscribe(timesheet => {
+        resolve(timesheet);
+        console.log(timesheet)
+      }, err => {
+        this.savee.Date=String(this.color);
+            this.savee.EmpId=this.id;
+            this.savee.Status=0;
+            this.savee.TotalHours=0;
+            this.savee.DefaultTask1=0;
+            this.savee.DefaultTask1=0;
+            this.savee.DefaultTask1=0;
+            this.savee.OtherTask=0;
+            this.savee.GuId=this.id+'+'+this.color;
+            this.api.pushtimeline(this.savee);
+        console.log(err);
+
+      });
+    });
 
   }
 

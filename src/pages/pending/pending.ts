@@ -5,6 +5,8 @@ import { CalendarComponentOptions, CalendarComponent } from 'ion2-calendar'
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MomentModule } from 'angular2-moment';
+import * as moment from 'moment';
 
  /**
  * Generated class for the PendingPage page.
@@ -45,6 +47,7 @@ pendmonths=[1,2,3,4];
 public difmonths:any;
 public contractorUrl='http://localhost:3000/api/ContractorTables';
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider) {
 
     this.id=this.api.id1;
@@ -60,7 +63,7 @@ this.api.getUsersa(this.id)
 console.log("hello322"+this.usrs.Name);
 });
  }
- 
+
  getUsers1() {
   this.api.getUsersa(this.id)
   .then(data => {
@@ -96,11 +99,11 @@ console.log("hello322"+this.usrs.Name);
   });
    }
 
-onChange(){
+onChange($event){
   
-
+  console.log(moment().format('YYYY-MM-DD'))
   this.navCtrl.push(TimesheetPage, {
-    data: this.date.getDate()});
+    data: moment(this.date).format("YYYY-MM-DD") });
   
 
 

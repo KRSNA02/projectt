@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { HomePageModule } from '../pages/home/home.module';
 import { ApiServiceProvider } from '../providers/api-service/api-service';
 import { Camera } from '@ionic-native/camera';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { Camera } from '@ionic-native/camera';
     CalendarModule,
     HttpClientModule,
     HomePageModule,
+    MomentModule,
     
     IonicModule.forRoot(MyApp)
   ],

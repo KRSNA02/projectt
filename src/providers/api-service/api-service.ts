@@ -69,6 +69,19 @@ public pushtimeline(abc){
     });
   }
 
-
+  public pushtime(abc,date){
+    console.log("inapi")
+    console.log(abc);
+    return new Promise((resolve,reject)=>{
+       this.http.put('http://localhost:3000/api/TimeSheetTables/'+this.id1+'%2B'+date,abc)
+       .subscribe(res=>{ 
+         resolve(res);
+  
+       },(err)=>{
+         reject(err);
+       });
+      });
+    }
+  
   
 }
