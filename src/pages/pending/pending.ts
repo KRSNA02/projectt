@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 import { TimesheetPage } from './../timesheet/timesheet';
-import { CalendarComponentOptions } from 'ion2-calendar'
+import { CalendarComponentOptions, CalendarComponent } from 'ion2-calendar'
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -40,6 +40,9 @@ public start:string;
 public end:any;
 public tar:any;
 public far:any;
+public options:CalendarComponentOptions;
+pendmonths=[1,2,3,4];
+public difmonths:any;
 public contractorUrl='http://localhost:3000/api/ContractorTables';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider) {
@@ -54,62 +57,45 @@ getUsers() {
 this.api.getUsersa(this.id)
 .then(data => {
  this.usrs = data;
- console.log(this.usrs.StartDate);
- this.start=String(this.usrs.StartDate);
- console.log(this.start)
-  this.sp1=this.start.split("-");
-  console.log(this.sp1);
- this.end=this.usrs.EndDate;
- console.log(this.end)
- this.sp2=this.end.split("-");
- console.log(this.sp2);
-console.log(this.usrs);
-
-
 console.log("hello322"+this.usrs.Name);
 });
  }
+ 
  getUsers1() {
   this.api.getUsersa(this.id)
   .then(data => {
    this.usrs = data;
-   console.log(this.usrs.StartDate);
+   
    this.start=String(this.usrs.StartDate);
-   console.log(this.start)
+   
     this.sp1=this.start.split("-");
     this.tyear=parseInt(this.sp1[0]);
-    console.log(this.tyear);
+   
     this.tmon=parseInt(this.sp1[1]);
-    console.log(this.tmon);
+   
     this.tdate=parseInt(this.sp1[2]);
-    console.log(this.tdate);
-    console.log(this.sp1);
+   
    this.end=this.usrs.EndDate;
-   console.log(this.end)
+   
    this.sp2=this.end.split("-");
    this.far=parseInt(this.sp2[0]);
-   console.log(this.far);
-   this.tar=parseInt(this.sp1[1]);
-   console.log(this.tar);
+   
+   this.tar=parseInt(this.sp2[1]);
+   
    this.fdate=parseInt(this.sp2[2]);
-   console.log(this.fdate);
-   console.log(this.sp2);
-  console.log(this.usrs);
-  
-  
-  console.log("hello322"+this.usrs.Name);
-  });
-  console.log(this.tar);
-   }
-
-   options : CalendarComponentOptions = {
-    
+   
+  this.options = {
   
     disableWeeks:[0,6],
-    from: new Date(2010,1,1),
+    from:new Date(this.far,this.tar,this.fdate),
+    to:new Date(this.tyear,this.tmon,this.tdate)
   
-    to: new Date(2020,1,1)
-  };  
+  
+  }
+  
+  });
+   }
+
 onChange(){
   
 

@@ -19,18 +19,36 @@ export class TimesheetPage {
   
 color:Date;
 users: any; 
+id:any;
+public poss={
+    
+  "Name": "sivaattt",
+  "DefaultTask2": 0,
+  "DefaultTask3": 33,
+  "OtherTask": 0,
+  "Status": 1,
+  "TotalHours": 0,
+  "EmpId": 2552,
+  "DefaultTask1": 0,
+  "Date": "2018-9-25"
+
+}
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider) {
     this.color=navParams.get('data');
-  //  this.getUsers();
+    this.id=this.api.id1;
+ 
   }
-  //getUsers() {
-    //this.api.getUsers()
-    //.then(data => {
-     // this.users = data;
-      //console.log(this.users);
-      //console.log("hello222"+this.users.Name);
-    //});
- // }
+getUsers() {
+  this.api.getUsersb(this.id)
+  .then(data => {
+  this.users = data;
+  console.log(this.users);
+  console.log("hello222"+this.users.Name);
+  console.log(this.users.Status);
+
+
+  });
+ }
 public des=[];
 public hours=[];
 public selctval='';
@@ -44,8 +62,25 @@ public a:number;
 public delw: string;
 public j:number;
 public flag:boolean=false;
-
+public savee={
+  "Name": " ",
+  "DefaultTask2": 0,
+  "DefaultTask3": 0,
+  "OtherTask": 0,
+  "Status": 0,
+  "TotalHours": 0,
+  "EmpId": 0,
+  "DefaultTask1": 0,
+  "Date": " "
+}
 add = 0;
+addtime(){
+
+
+
+
+  
+}
 
   additem()
   { if(this.selctval == '' || this.selctmin=='' || this.selcthr==''){this.flag=true;}
@@ -72,7 +107,7 @@ add = 0;
       this.j= parseInt(this.selctmin)/60
         this.j=parseFloat(this.j.toFixed(2));
         this.selctime= parseInt(this.selcthr)+this.j;
-        this.des.push(this.selctval);
+       //s this.des.push(this.selctval);
         this.hours.push(this.selctime);
         this.add = this.add + this.selctime;
         //this.flag=true; 
@@ -114,6 +149,8 @@ save()
         {
           text: 'Agree',
           handler: () => {
+            
+            this.getUsers();
             let toast = this.toastCtrl.create({
               message: 'Successfully Saved',
               duration: 3000,

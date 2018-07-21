@@ -24,7 +24,7 @@ export class HomePage {
   usr:any;
   usra:any;
   usrb:any;
-  public hours=[];
+ 
   employeeUrl='http://localhost:3000/api/EmployeeTables'
   contractorUrl='http://localhost:3000/api/ContractorTables'
   timesheetUrl='http://localhost:3000/api/TimeSheetTables'
@@ -42,7 +42,7 @@ export class HomePage {
         this.usrs=contractor;
         console.log(this.usrs)
         this.fdate=this.usrs.StartDate;
-       this.hours=["1","2","3","4","5","6"]
+      
         console.log(this.usrs.StartDate);
         this.tdate=this.usrs.EndDate;
         console.log(this.usrs.EndDate);
