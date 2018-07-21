@@ -78,6 +78,7 @@ public pushtimeline(abc){
          resolve(res);
   
        },(err)=>{
+        console.log("reject")
          reject(err);
        });
       });

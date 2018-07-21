@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { ViewhistoryPage } from '../viewhistory/viewhistory';
+import { MomentModule } from 'angular2-moment';
+import * as moment from 'moment';
 /**
  * Generated class for the HistoryPage page.
  *
@@ -31,7 +33,7 @@ onChange(){
   
 
   this.navCtrl.push(ViewhistoryPage, {
-    data: this.date});
+    data: moment(this.date).format("YYYY-MM-DD") });
   
   }
   ionViewDidLoad() {

@@ -21,6 +21,8 @@ export class TimesheetPage {
 color:Date;
 users: any; 
 id:any;
+public status:number;
+public gettt:any;
 public poss={
     
   "Name": "sivaattt",
@@ -127,7 +129,7 @@ addtime(abc){
               console.log(this.selctime);
         
               this.hours[this.b]=this.selctime;
-              this.add = this.add + this.selctime;
+              this.add = this.hours[0]+this.hours[1]+this.hours[2]+this.hours[3];
         
             }
                     
@@ -217,6 +219,19 @@ submit()
       {
         text: 'Agree',
         handler: () => {
+          this.savee.Date=String(this.color);
+          this.savee.EmpId=this.id;
+          this.savee.Status=2;
+          this.savee.TotalHours=this.add;
+          this.savee.DefaultTask1=this.hours[0];
+          this.savee.DefaultTask2=this.hours[1];
+          this.savee.DefaultTask3=this.hours[2];
+          this.savee.OtherTask=this.hours[3];
+          console.log("beforesubmit")
+          console.log(this.savee)
+          this.api.pushtime(this.savee,this.color);
+          (<HTMLInputElement> document.getElementById("save")).disabled = true;
+          (<HTMLInputElement> document.getElementById("submit")).disabled = true;
           let toast = this.toastCtrl.create({
             message: 'Successfully submitted',
             duration: 3000,
@@ -251,6 +266,20 @@ submit()
       this.http.get(this.urlres+this.id+"%2B"+this.color).subscribe(timesheet => {
         resolve(timesheet);
         console.log(timesheet)
+        this.gettt=timesheet;
+        this.hours[0]=this.gettt.DefaultTask1;
+        this.hours[1]=this.gettt.DefaultTask2;
+        this.hours[2]=this.gettt.DefaultTask3;
+        this.hours[3]=this.gettt.OtherTask;
+        this.status=this.gettt.Status;
+        this.add=this.gettt.TotalHours;
+        if(this.status===2)
+        {
+          (<HTMLInputElement> document.getElementById("save")).disabled = true;
+          (<HTMLInputElement> document.getElementById("submit")).disabled = true;
+
+
+        }
       }, err => {
         this.savee.Date=String(this.color);
             this.savee.EmpId=this.id;
