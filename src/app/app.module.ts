@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { HomePageModule } from '../pages/home/home.module';
 import { ApiServiceProvider } from '../providers/api-service/api-service';
 import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
 import { MomentModule } from 'angular2-moment';
 
 @NgModule({
@@ -54,6 +57,9 @@ import { MomentModule } from 'angular2-moment';
     StatusBar,
     SplashScreen,
     Camera,
+    Transfer,
+    File,
+    FilePath,
     HttpClientModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,

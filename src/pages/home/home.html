@@ -21,9 +21,9 @@
   <ion-content class="home" padding>
       <h3>Welcome inside, {{username}}!</h3>
       <ion-card>
-          <img id="bgg" src="//tutorialsplane.com/wp-content/uploads/2017/01/ace-1807511__340.jpg"/>
+          <img id="bgg" src="{{pathForImage1(lastImage1)}}"/>
           <ion-avatar id="profile-info">
-              <img id="profile-image" src="assets/imgs/bala.jpg">
+              <img id="profile-image" src="{{pathForImage(lastImage)}}">
             </ion-avatar>
           
           <div class="card-title">{{username}}</div>
@@ -39,6 +39,30 @@
         <h4>Submit Status:<h6>{{sta}}</h6></h4>
   
   
-  
     
   </ion-content>
+  
+
+  <ion-footer>
+
+    <ion-toolbar color="primary">
+  
+      <ion-buttons>
+  
+        <button ion-button icon-left (click)="presentActionSheet()">
+  
+          <ion-icon name="camera"></ion-icon>Profile Photo
+  
+        </button>
+  
+        <button ion-button icon-left (click)="presentActionSheet1()">
+  
+          <ion-icon name="camera"></ion-icon>Cover Photo
+  
+        </button>
+  
+      </ion-buttons>
+  
+    </ion-toolbar>
+  
+  </ion-footer>
