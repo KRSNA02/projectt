@@ -68,7 +68,7 @@ public b:number;
 public delw: string;
 public j:number;
 public flag:boolean=false;
-public urlres="http://localhost:3000/api/TimeSheetTables/";
+public urlres="http://192.168.15.61:3000/api/TimeSheetTables/";
 public savee={
   "Name": "abc",
   "DefaultTask2": 0,

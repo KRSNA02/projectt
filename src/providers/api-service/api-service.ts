@@ -14,9 +14,9 @@ import { resolveDefinition } from '../../../node_modules/@angular/core/src/view/
 @Injectable()
 export class ApiServiceProvider {
 public id1:any;
-  private url: string = "http://localhost:3000/api/EmployeeTables"
-  private url1: string='http://localhost:3000/api/ContractorTables';
-  private url2: string='http://localhost:3000/api/TimeSheetTables';
+  private url: string = "http://192.168.15.61:3000/api/EmployeeTables"
+  private url1: string='http://192.168.15.61:3000/api/ContractorTables';
+  private url2: string='http://192.168.15.61:3000/api/TimeSheetTables';
   
 data:any;
 
@@ -59,7 +59,7 @@ data:any;
 public pushtimeline(abc){
   console.log(abc);
   return new Promise((resolve,reject)=>{
-     this.http.post('http://localhost:3000/api/TimeSheetTables',abc)
+     this.http.post('http://192.168.15.61:3000/api/TimeSheetTables',abc)
      .subscribe(res=>{ 
        resolve(res);
 
@@ -73,7 +73,7 @@ public pushtimeline(abc){
     console.log("inapi")
     console.log(abc);
     return new Promise((resolve,reject)=>{
-       this.http.put('http://localhost:3000/api/TimeSheetTables/'+this.id1+'%2B'+date,abc)
+       this.http.put('http://192.168.15.61:3000/api/TimeSheetTables/'+this.id1+'%2B'+date,abc)
        .subscribe(res=>{ 
          resolve(res);
   

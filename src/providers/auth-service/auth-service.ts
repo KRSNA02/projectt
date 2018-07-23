@@ -14,7 +14,7 @@ email: string;
 
 @Injectable()
 export class AuthServiceProvider {
-  credUrl='http://localhost:3000/api/EmployeeTables'
+  credUrl='http://192.168.15.61:3000/api/EmployeeTables'
   constructor(public http: HttpClient) {
     console.log('Hello AuthServiceProvider Provider');
    }

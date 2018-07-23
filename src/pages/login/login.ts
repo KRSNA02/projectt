@@ -25,7 +25,7 @@ export class LoginPage {
   registerCredentials = {id: '', password: '' };
   id: number;
   users:any;
-  apiUrl = 'http://localhost:3000/api/EmployeeTables';
+  apiUrl = 'http://192.168.15.61:3000/api/EmployeeTables';
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient, public api:ApiServiceProvider) {
     
   }

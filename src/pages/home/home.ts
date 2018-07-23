@@ -25,9 +25,9 @@ export class HomePage {
   usra:any;
   usrb:any;
  
-  employeeUrl='http://localhost:3000/api/EmployeeTables'
-  contractorUrl='http://localhost:3000/api/ContractorTables'
-  timesheetUrl='http://localhost:3000/api/TimeSheetTables'
+  employeeUrl='http://192.168.15.61:3000/api/EmployeeTables'
+  contractorUrl='http://192.168.15.61:3000/api/ContractorTables'
+  timesheetUrl='http://192.168.15.61:3000/api/TimeSheetTables'
   constructor(private nav: NavController,public navParams: NavParams, private auth: AuthServiceProvider,public camera:Camera,public http:HttpClient) {
     this.id=navParams.get('data');
     console.log(this.id);

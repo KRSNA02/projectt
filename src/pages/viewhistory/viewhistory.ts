@@ -21,7 +21,7 @@ export class ViewhistoryPage {
   public gettt:any;
   public hours=[0,0,0,0];
   public works=["DefaultTask1","DefaultTask1","DefaultTask1","OtherTask"];
-  public urlres="http://localhost:3000/api/TimeSheetTables/";
+  public urlres="http://192.168.15.61:3000/api/TimeSheetTables/";
   public id:any;
   public add:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api:ApiServiceProvider, public http:HttpClient) {

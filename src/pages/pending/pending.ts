@@ -45,7 +45,7 @@ public far:any;
 public options:CalendarComponentOptions;
 pendmonths=[1,2,3,4];
 public difmonths:any;
-public contractorUrl='http://localhost:3000/api/ContractorTables';
+public contractorUrl='http://192.168.15.61:3000/api/ContractorTables';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider) {
