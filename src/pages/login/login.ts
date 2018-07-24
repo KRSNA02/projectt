@@ -1,6 +1,6 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController, MenuController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
@@ -26,8 +26,8 @@ export class LoginPage {
   id: number;
   users:any;
   apiUrl = 'http://192.168.15.61:3000/api/EmployeeTables';
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient, public api:ApiServiceProvider) {
-    
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient, public api:ApiServiceProvider, public menu:MenuController) {
+   
   }
 
  
@@ -35,8 +35,6 @@ export class LoginPage {
     this.api.getUsers(this.registerCredentials.id)
     .then(data => {
       this.users = data;
-      console.log(this.users);
-      console.log("hello222"+this.users.Name);
       this.showLoading();
       if(parseInt(this.users.EmpId) === parseInt(this.registerCredentials.id) && this.users.Password === this.registerCredentials.password)
       {

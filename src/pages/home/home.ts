@@ -27,14 +27,12 @@ export class HomePage {
   lastImage:string=null;
   lastImage1:string=null;
   loading:Loading;
-  usrs:any;
-  usr:any;
-  usra:any;
-  usrb:any;
- 
-  employeeUrl='http://192.168.15.61:3000/api/EmployeeTables'
-  contractorUrl='http://192.168.15.61:3000/api/ContractorTables'
-  timesheetUrl='http://192.168.15.61:3000/api/TimeSheetTables'
+  usrsctrt:any;
+  usrtime:any;
+  usremp:any;
+  employeeUrl="http://192.168.15.61:3000/api/EmployeeTables";
+  contractorUrl='http://192.168.15.61:3000/api/ContractorTables';
+  timesheetUrl='http://192.168.15.61:3000/api/TimeSheetTables';
   constructor(private nav: NavController,public navParams: NavParams, private auth: AuthServiceProvider,public camera:Camera,public http:HttpClient, public transfer:Transfer, public file:File,public filePath:FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl:ToastController,public platform:Platform, public loadingCtrl:LoadingController, ) {
     this.id=navParams.get('data');
     console.log(this.id);
@@ -182,7 +180,7 @@ export class HomePage {
   
     if (img === null) {
   
-      return '../../assets/imgs/background.jpeg';
+      return '../../assets/imgs/profile.jpg';
   
     } else {
   
@@ -474,14 +472,26 @@ export class HomePage {
     new Promise(resolve => {
       this.http.get(this.contractorUrl+'/'+this.id).subscribe(contractor => {
         resolve(contractor);
-        this.usrs=contractor;
-        console.log(this.usrs)
-        this.fdate=this.usrs.StartDate;
+        this.usrsctrt=contractor;
+        console.log(this.usrsctrt)
+        this.fdate=this.usrsctrt.StartDate;
       
-        console.log(this.usrs.StartDate);
-        this.tdate=this.usrs.EndDate;
-        console.log(this.usrs.EndDate);
+        console.log(this.usrsctrt.StartDate);
+        this.tdate=this.usrsctrt.EndDate;
+        console.log(this.usrsctrt.EndDate);
         
+      }, err => {
+        console.log(err);
+      });
+    });
+
+    new Promise(resolve => {
+      this.http.get(this.employeeUrl+'/'+this.id).subscribe(employe => {
+        resolve(employe);
+        this.usremp=employe;
+        console.log(this.usremp)
+        this.designation=this.usremp.Designation;
+        this.username=this.usremp.Name;
       }, err => {
         console.log(err);
       });
@@ -490,24 +500,22 @@ export class HomePage {
     new Promise(resolve => {
       this.http.get(this.timesheetUrl+'/'+this.id).subscribe(timesheet => {
         resolve(timesheet);
-        this.usr=timesheet;
-        if(parseInt(this.usr.Status) === 0 )
+        this.usrtime=timesheet;
+        if(parseInt(this.usrtime.Status) === 0 )
         {
 
           this.sta='Not Submitted';
 
         }
-        else if(parseInt(this.usr.Status) === 1 )
+        else if(parseInt(this.usrtime.Status) === 1 )
         {this.sta='Submitted';}
-        else if(parseInt(this.usr.Status) === 2 )
+        else if(parseInt(this.usrtime.Status) === 2 )
         {this.sta='Approved';}
       }, err => {
         console.log(err);
       });
     });
-       console.log("view")
-       console.log(this.usra);
-       console.log(this.fdate);
+       
   }
  
   public logout() {

@@ -1,8 +1,14 @@
 page-login {
- 
+  
     .login-content {
       //background: #5cdfe3;
-      background-image: url("../../assets/imgs/Untitled.png");
+      
+      background-image: url("../../assets/imgs/Capture2.png");
+      -webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;
+      
+      
       
       .logo-row {
         padding-top: 50px;
@@ -10,7 +16,8 @@ page-login {
       }
    
       .login-box {
-        background: #0084a1;
+        background-color: #345678;
+        box-shadow: 10px;
         padding: 20px 20px 0px 20px;
         margin-top: 30px;
       }
