@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Button } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Button, MenuController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { HttpClient } from '@angular/common/http';
+import { PendingPage } from '../pending/pending';
 /**
  * Generated class for the TimesheetPage page.
  *
@@ -36,7 +37,8 @@ public poss={
   "Date": "2018-9-25"
 
 }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, public api: ApiServiceProvider, public http: HttpClient,public menu:MenuController) {
+    this.menu.enable(false,"Mymenu");
     this.color=navParams.get('data');
     console.log("Const time")
     console.log(this.color)
@@ -82,6 +84,7 @@ public savee={
   "GuId": "def"
 }
 add = 0;
+
 addtime(abc){
 
   this.b=this.works.indexOf(abc);
@@ -255,7 +258,11 @@ submit()
 
 }
 
+pop(){
 
+  this.navCtrl.setRoot(PendingPage);
+  
+  }
 
 
 

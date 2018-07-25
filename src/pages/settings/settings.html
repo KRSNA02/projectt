@@ -22,5 +22,17 @@
   
   <ion-content padding>
   
+      <ion-list>
+            
+          <button ion-item (click)="changepwd()" m><ion-icon ios="ios-home" md="md-home"></ion-icon> HOME</button>
+          <button ion-item (click)="gotoDash()" menuClose><ion-icon name="bookmarks"></ion-icon> HISTORY</button>
+          <button ion-item (click)="gotoPend()" menuClose><ion-icon name="alert"></ion-icon> PENDING</button>
+          <button ion-item (click)="gotoSettings()" menuClose><ion-icon name="settings"></ion-icon> SETTINGS</button>
+       
+
+
+      </ion-list>
+
+
   </ion-content>
   

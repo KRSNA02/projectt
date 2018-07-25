@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import { ViewhistoryPage } from '../viewhistory/viewhistory';
 import { MomentModule } from 'angular2-moment';
@@ -20,7 +20,8 @@ export class HistoryPage {
   public date:Date;
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu:MenuController) {
+    //this.menu.enable(true,"Mymenu");
   }
 
   options: CalendarComponentOptions = {
@@ -32,11 +33,12 @@ export class HistoryPage {
 onChange(){
   
 
-  this.navCtrl.push(ViewhistoryPage, {
+  this.navCtrl.setRoot(ViewhistoryPage, {
     data: moment(this.date).format("YYYY-MM-DD") });
   
   }
   ionViewDidLoad() {
+    this.menu.enable(true,"Mymenu");
     console.log('ionViewDidLoad HistoryPage');
   }
 

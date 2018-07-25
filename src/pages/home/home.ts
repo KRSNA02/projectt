@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage,NavParams, ActionSheetController,ToastController,Platform,LoadingController,Loading } from 'ionic-angular';
+import { NavController, IonicPage,NavParams, ActionSheetController,ToastController,Platform,LoadingController,Loading, MenuController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginPage } from './../login/login';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { File } from '@ionic-native/file';
 import { Transfer,TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import 'rxjs';
+import { ApiServiceProvider } from '../../providers/api-service/api-service';
 
 declare var cordova:any;
  
@@ -17,13 +18,13 @@ declare var cordova:any;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = 'Balakrishna';
-  designation = 'Associate Software Engineer';
-  fdate = "25/05/2018";
-  tdate = "25/06/2018";
+  username = '';
+  designation = '';
+  fdate = "";
+  tdate = "";
   base64Image:any;
   id:any;
-  sta='Submitted';
+  sta='';
   lastImage:string=null;
   lastImage1:string=null;
   loading:Loading;
@@ -33,11 +34,73 @@ export class HomePage {
   employeeUrl="http://192.168.15.61:3000/api/EmployeeTables";
   contractorUrl='http://192.168.15.61:3000/api/ContractorTables';
   timesheetUrl='http://192.168.15.61:3000/api/TimeSheetTables';
-  constructor(private nav: NavController,public navParams: NavParams, private auth: AuthServiceProvider,public camera:Camera,public http:HttpClient, public transfer:Transfer, public file:File,public filePath:FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl:ToastController,public platform:Platform, public loadingCtrl:LoadingController, ) {
-    this.id=navParams.get('data');
+  constructor(private nav: NavController,public navParams: NavParams, private auth: AuthServiceProvider,public camera:Camera,public http:HttpClient, public transfer:Transfer, public file:File,public filePath:FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl:ToastController,public platform:Platform, public loadingCtrl:LoadingController,public menu:MenuController,public api:ApiServiceProvider ) {
+    this.id=this.api.id1;
+    this.menu.enable(true,"Mymenu");
     console.log(this.id);
+    this.empdet();
+    this.condet();
+    this.timedet();
+  }
+  empdet(){
+    this.api.getUsers(this.id)
+    .then(data => {
+      this.usremp=data;
+      console.log(this.usremp)
+      this.designation=this.usremp.Designation;
+      this.username=this.usremp.Name;
+    }, err => {
+      console.log(err);
+
+    });
+
+
+
+  }
+
+  condet(){
+
+    this.api.getUsersa(this.id)
+    .then(data => {
+      this.usrsctrt=data;
+        console.log(this.usrsctrt)
+        this.fdate=this.usrsctrt.StartDate;
+      
+        console.log(this.usrsctrt.StartDate);
+        this.tdate=this.usrsctrt.EndDate;
+        console.log(this.usrsctrt.EndDate);
+        
+      }, err => {
+        console.log(err);
+      });
+
+
+
   }
   
+
+timedet(){
+
+  this.api.getUsersb(this.id)
+    .then(data => {
+      this.usrtime=data;
+        console.log(this.usrsctrt)
+        this.usrtime=data;
+        if(parseInt(this.usrtime.Status) === 0 )
+        {
+
+          this.sta='Not Submitted';
+
+        }
+        else if(parseInt(this.usrtime.Status) === 1 )
+        {this.sta='Submitted';}
+        else if(parseInt(this.usrtime.Status) === 2 )
+        {this.sta='Approved';}
+      }, err => {
+        console.log(err);
+      });
+}
+
 
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
@@ -469,7 +532,7 @@ export class HomePage {
   ionViewDidLoad(){
     
      
-    new Promise(resolve => {
+    /*new Promise(resolve => {
       this.http.get(this.contractorUrl+'/'+this.id).subscribe(contractor => {
         resolve(contractor);
         this.usrsctrt=contractor;
@@ -514,7 +577,7 @@ export class HomePage {
       }, err => {
         console.log(err);
       });
-    });
+    });*/
        
   }
  

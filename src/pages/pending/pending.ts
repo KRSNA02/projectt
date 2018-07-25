@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { TimesheetPage } from './../timesheet/timesheet';
 import { CalendarComponentOptions, CalendarComponent } from 'ion2-calendar'
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
@@ -27,12 +27,12 @@ export class PendingPage {
 
 public date: Date;
 public type: string;
-public fyear=2018;
-public fmon=5;
-public fdate;
-public tyear=2018;
-public tmon=6;
-public tdate=25;
+public fyear:number;
+public fmon:number;
+public fdate:number;
+public tyear:any;
+public tmon:any;
+public tdate:any;
 public count=0;
 public usrs:any;
 public id:any;
@@ -48,7 +48,8 @@ public difmonths:any;
 public contractorUrl='http://192.168.15.61:3000/api/ContractorTables';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider,public menu:MenuController) {
+    this.menu.enable(true,"Mymenu");
 
     this.id=this.api.id1;
     console.log("hifrompend");
@@ -102,7 +103,7 @@ console.log("hello322"+this.usrs.Name);
 onChange($event){
   
   console.log(moment().format('YYYY-MM-DD'))
-  this.navCtrl.push(TimesheetPage, {
+  this.navCtrl.setRoot(TimesheetPage, {
     data: moment(this.date).format("YYYY-MM-DD") });
   
 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { HttpClient } from '@angular/common/http';
+import { HistoryPage } from '../history/history';
 
 /**
  * Generated class for the ViewhistoryPage page.
@@ -24,12 +25,19 @@ export class ViewhistoryPage {
   public urlres="http://192.168.15.61:3000/api/TimeSheetTables/";
   public id:any;
   public add:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api:ApiServiceProvider, public http:HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api:ApiServiceProvider, public http:HttpClient,public menu:MenuController) {
+    //this.menu.enable(true,"Mymenu");
     this.color=navParams.get('data');
     this.id=this.api.id1;
 
   }
+  pop(){
+
+this.navCtrl.setRoot(HistoryPage);
+
+  }
   ionViewDidLoad() {
+    this.menu.enable(false,"Mymenu")
     console.log('ionViewDidLoad ViewhistoryPage');
     new Promise(resolve => {
       this.http.get(this.urlres+this.id+"%2B"+this.color).subscribe(timesheet => {

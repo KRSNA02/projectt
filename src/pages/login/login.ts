@@ -27,7 +27,7 @@ export class LoginPage {
   users:any;
   apiUrl = 'http://192.168.15.61:3000/api/EmployeeTables';
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public http: HttpClient, public api:ApiServiceProvider, public menu:MenuController) {
-   
+    this.menu.enable(false,"Mymenu")
   }
 
  
@@ -39,8 +39,7 @@ export class LoginPage {
       if(parseInt(this.users.EmpId) === parseInt(this.registerCredentials.id) && this.users.Password === this.registerCredentials.password)
       {
 
-        this.nav.setRoot('HomePage',{
-          data: this.registerCredentials.id});
+        this.nav.setRoot('HomePage');
       }
       else{
         console.log(this.users.EmpId)
