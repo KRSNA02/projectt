@@ -22,6 +22,8 @@ export class TimesheetPage {
 color:Date;
 users: any; 
 id:any;
+us:any;
+public jobs=[];
 public status:number;
 public gettt:any;
 public poss={
@@ -44,8 +46,36 @@ public poss={
     console.log(this.color)
     this.id=this.api.id1;
     this.getUsers();
+    this.getjobs();
  
   } 
+
+getjobs()
+{
+  this.api.getjob()
+  .then(data => {
+    console.log("before")
+    console.log(data)
+  this.us = data;
+  //for(var i=0;i<this.us.length;i++)
+ // this.jobs.push(this.us[i].JobName)
+  console.log("after")
+  console.log(this.users);
+  console.log("insode")
+  this.us.forEach(element => {
+    this.jobs.push(element.JobName);  
+    this.hours.push(0);
+  });
+  
+  console.log(this.jobs);
+
+
+
+  });
+
+
+}
+
 getUsers() {
   this.api.getUsersb(this.id)
   .then(data => {
@@ -57,13 +87,12 @@ getUsers() {
 
   });
  }
-public hours=[0,0,0,0];
+public hours=[];
 public selctval='';
 selctime=0;
 public selcthr=0;
 public selctmin=0;
-public works=["Health Check","Others","Meeting","OptIN"];
-public times=[1,2,3,4,5,6,7,8];
+public works=[];
 public i:number;
 public a:number;
 public b:number;

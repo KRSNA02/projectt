@@ -17,6 +17,7 @@ public id1:any;
   private url: string = "http://192.168.15.61:3000/api/EmployeeTables"
   private url1: string='http://192.168.15.61:3000/api/ContractorTables';
   private url2: string='http://192.168.15.61:3000/api/TimeSheetTables';
+  private url3: string="http://localhost:3000/api/JobsTables";
   
 data:any;
 
@@ -34,6 +35,7 @@ data:any;
       });
     });
   }
+ 
   
   getUsersa(id:any) {
     this.id1=id;
@@ -81,6 +83,15 @@ public pushtimeline(abc){
         console.log("reject")
          reject(err);
        });
+      });
+    }
+    getjob() {
+      return new Promise(resolve => {
+        this.http.get(this.url3).subscribe(data => {
+          resolve(data);
+        }, err => {
+          console.log(err);
+        });
       });
     }
   
