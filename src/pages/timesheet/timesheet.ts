@@ -210,8 +210,8 @@ save()
             this.savee.TotalHours=this.add;
             this.savee.DefaultTask1=this.hours[0];
             this.savee.DefaultTask2=this.hours[1];
-            this.savee.DefaultTask3=this.hours[2];
-            this.savee.OtherTask=this.hours[3];
+            this.savee.OtherTask=this.hours[2];
+            this.savee.DefaultTask3=this.hours[3];
             console.log("beforesave")
             console.log(this.savee)
             this.api.pushtime(this.savee,this.color);

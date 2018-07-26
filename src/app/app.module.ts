@@ -21,6 +21,7 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { MomentModule } from 'angular2-moment';
+import { HiPageModule } from '../pages/hi/hi.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MomentModule } from 'angular2-moment';
     PendingPage,
     SettingsPage,
     TimesheetPage,
-    ViewhistoryPage,
+    ViewhistoryPage
+    
   
   ],
   imports: [
@@ -39,6 +41,7 @@ import { MomentModule } from 'angular2-moment';
     HttpClientModule,
     HomePageModule,
     MomentModule,
+    HiPageModule,
     
     IonicModule.forRoot(MyApp)
   ],

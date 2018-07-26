@@ -7,12 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>hi</ion-title>
+    <ion-title>Password Change</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+    <form (ngSubmit)="changepwd()" #registerForm="ngForm">
+    <ion-list inset>
+              
+        <ion-item>
+          <ion-input type="password" placeholder="Enter New Password" name="password" [(ngModel)]="password.nnew" required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input type="password" placeholder="Re-Enter Password" name="rpassword" [(ngModel)]="rnew" required></ion-input>
+        </ion-item>
+        
+      </ion-list>
+      <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Change</button>
+      </form>
 
 </ion-content>
