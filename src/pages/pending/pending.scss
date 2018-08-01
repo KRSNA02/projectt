@@ -5,8 +5,21 @@ page-pending {
       padding: 10px 20px;
       box-sizing: border-box;
       display: inline-block;
-      background-color: #123456;
+       background-color:#007F66;
       width: 100%;
+
+
+      .abc{
+        border-style: none;
+        background-color:#007F66;
+        width: 100%;
+        height:100%;
+
+      }
+      .abcd{
+
+        background: transparent !important;
+      }
     
       .title {
     

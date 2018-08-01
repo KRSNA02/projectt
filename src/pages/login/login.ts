@@ -8,12 +8,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

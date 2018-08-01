@@ -2,26 +2,13 @@ page-history {
 
     background-image: url("../../assets/imgs/bg.png");
 
+    .abc{
+        border-style: none;
+        background-color:#007F66;
+        width: 100%;
+        height:100%;
 
-.back{
-    background-image: url("../../assets/imgs/bg.png");
-    
-}
-.button-inner{
-    color:wheat
-}
-.week-title.transparent{
-    color:white;
-}
+      }
 
-button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
-p {
-    color: red;
-}
 
 }

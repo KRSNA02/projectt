@@ -95,5 +95,19 @@ public pushtimeline(abc){
       });
     }
   
+ 
+    gettime(abc,date){
+
+      return new Promise(resolve => {
+        this.http.get(this.url2+abc+"%2B"+date).subscribe(timesheet => {
+          resolve(timesheet);
+          console.log(timesheet)
+          
+        }, err => {
+         console.log(err);
   
+        });
+      });
+    }
+
 }

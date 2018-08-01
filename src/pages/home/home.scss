@@ -1,7 +1,11 @@
 page-home {
     .home {
      
-      background-image: url("../../assets/imgs/bg.png");
+      background-image: url("../../assets/imgs/Capture3.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      color: #fff;
     
     ion-card {
       position: relative;

@@ -29,34 +29,7 @@
       </ion-grid>
     </ion-card>
   
-   <!-- <ion-grid>
-        <ion-row>
-         <ion-col>
-            
-              <ion-select placeholder="WORK" [(ngModel)]="selctval" selectedText>
-                  <ion-option *ngFor="let work of works" value="{{work}}">{{work}}</ion-option>
-              </ion-select>
-            </ion-col>
-       
-            <ion-col>
-           <ion-select [(ngModel)]="selctime" placeholder="TIME" selectedText>
-                    <ion-option *ngFor="let time of times" value="{{time}}">{{time}}</ion-option>
-                </ion-select>
-                <ion-row>
-                <ion-input type="number" placeholder="Hours" name="hours" [(ngModel)]="selcthr" required></ion-input></ion-row>
-                <ion-row>
-                    <ion-input type="number" placeholder="Minutes" name="minutes" [(ngModel)]="selctmin" required></ion-input></ion-row>
-          </ion-col>
-          
-              <ion-buttons end>
-                  <button ion-button (click)="additem()">
-                    <ion-icon name="add"></ion-icon>
-                  </button>
-                </ion-buttons>      
-         
-        </ion-row>
-      </ion-grid>
-    -->
+  
      <ion-card>
     <ion-grid>
        <ion-row>
@@ -77,7 +50,7 @@
                     </ion-item>
                  
                     <ion-item-options>
-                      <button danger (click)="removeItem(hour)"><ion-icon name="trash"></ion-icon> Delete</button>
+                      <button danger (click)="removeItem(hour)" id="remove"><ion-icon name="trash"></ion-icon> Delete</button>
                     </ion-item-options>
                   </ion-item-sliding>
                  

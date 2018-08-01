@@ -19,16 +19,44 @@
   </ion-header>
   
   
-  <ion-content padding>
-  <h4>Select a date from below to fill the timesheet</h4>
+  <ion-content no-padding class="abc">
+ <ion-grid no-padding>
+   <ion-row class="abc">
+   <ion-col class="col-md-2">
+
+   </ion-col>
+   <ion-col class="col-md-8">
+    <h4>Select a date</h4>
+  </ion-col>
+  <ion-col>
+
+  </ion-col>
+</ion-row>
+<ion-row class="abc">
+  <ion-col>
+
+  </ion-col>
+  <ion-col>
+      
+</ion-col>
+<ion-col>
+
+</ion-col>
+</ion-row>
+<ion-row>
+<ion-card style="background-color:yellow" no-padding class="abcd">
+    <ion-calendar [(ngModel)]="date"
+    [options]="options"
+    (onChange)="onChange($event)"
+    [type]="type"
+    [format]="YYYY-MM-DD" style="background-color:#fbf1b2">
+    </ion-calendar>
+  </ion-card>
+
+</ion-row>
+ </ion-grid> 
 
 
-<ion-calendar [(ngModel)]="date"
-          [options]="options"
-          (onChange)="onChange($event)"
-          [type]="type"
-          [format]="YYYY-MM-DD">
-  </ion-calendar>
   
 
  

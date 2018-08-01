@@ -20,18 +20,29 @@
   </ion-header>
   
   
-  <ion-content padding>
+  <ion-content no-padding >
   
-      <ion-list>
+      <ion-card class="abcd">
+          
+            <img src="../../assets/imgs/Capture4.PNG"/>
+          <ion-list >  
+          <p  (click)="changepwd()" class="card-title">CHANGE PASSWORD</p>
+          <ion-item-divider>
+                <hr/>
+              </ion-item-divider>
+              <ion-list-header>
+                    Header
+                  </ion-list-header>
             
-          <button ion-item (click)="changepwd()" m><ion-icon ios="ios-home" md="md-home"></ion-icon>CHANGE PASSWORD</button>
-          <button ion-item (click)="gotoDash()" menuClose><ion-icon name="bookmarks"></ion-icon> DELETE AN ITEM IN TIMESHEET</button>
-          <button ion-item (click)="gotoPend()" menuClose><ion-icon name="alert"></ion-icon> CHANGE PICTURE</button>
-          <button ion-item (click)="gotoSettings()" menuClose><ion-icon name="settings"></ion-icon> SETTINGS</button>
+          <p (click)="deletime()" class="card-title1">DELETE AN ITEM IN TIMESHEET</p>
+          <p (click)="chanpic()" class="card-title2">CHANGE PICTURE</p>
+          <p (click)="Addarecord()" class="card-title3">ADD A RECORD IN TIMESHEET</p>
+          <p (click)="savesum()" class="card-title4">SAVE AND SUBMIT BUTTON</p>
        
 
 
       </ion-list>
+    </ion-card>
 
 
   </ion-content>

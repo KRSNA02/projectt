@@ -21,19 +21,17 @@ import * as moment from 'moment';
   selector: 'page-pending',
   templateUrl: 'pending.html',
 })
-export class PendingPage {
+export class PendingPage 
+{
   calendarOneWeek: String;
   @ViewChild(Nav) nav: Nav;
 
 public date: Date;
 public type: string;
-public fyear:number;
-public fmon:number;
 public fdate:number;
 public tyear:any;
 public tmon:any;
 public tdate:any;
-public count=0;
 public usrs:any;
 public id:any;
 public sp1:any;
@@ -43,77 +41,73 @@ public end:any;
 public tar:any;
 public far:any;
 public options:CalendarComponentOptions;
-pendmonths=[1,2,3,4];
-public difmonths:any;
 public contractorUrl='http://192.168.15.61:3000/api/ContractorTables';
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider,public menu:MenuController) {
-    this.menu.enable(true,"Mymenu");
-
-    this.id=this.api.id1;
-    console.log("hifrompend");
-    console.log(this.id);
+constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient, public api:ApiServiceProvider,public menu:MenuController) 
+{
+  this.menu.enable(true,"Mymenu");
+  this.id=this.api.id1;
   this.getUsers();
   this.getUsers1();
 }
-getUsers() {
-this.api.getUsersa(this.id)
-.then(data => {
- this.usrs = data;
-console.log("hello322"+this.usrs.Name);
-});
- }
-
- getUsers1() {
+getUsers() 
+{
   this.api.getUsersa(this.id)
-  .then(data => {
-   this.usrs = data;
-   
-   this.start=String(this.usrs.StartDate);
-   
-    this.sp1=this.start.split("-");
-    this.tyear=parseInt(this.sp1[0]);
-   
-    this.tmon=parseInt(this.sp1[1]);
-   
-    this.tdate=parseInt(this.sp1[2]);
-   
-   this.end=this.usrs.EndDate;
-   
-   this.sp2=this.end.split("-");
-   this.far=parseInt(this.sp2[0]);
-   
-   this.tar=parseInt(this.sp2[1]);
-   
-   this.fdate=parseInt(this.sp2[2]);
-   
-  this.options = {
-  
-    disableWeeks:[0,6],
-    from:new Date(this.far,this.tar,this.fdate),
-    to:new Date(this.tyear,this.tmon,this.tdate)
-  
-  
-  }
-  
+  .then(data => 
+  {
+    this.usrs = data;
   });
-   }
-
-onChange($event){
-  
-  console.log(moment().format('YYYY-MM-DD'))
-  this.navCtrl.setRoot(TimesheetPage, {
-    data: moment(this.date).format("YYYY-MM-DD") });
-  
-
-
 }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PendingPage');
+getUsers1() 
+{
+  this.api.getUsersa(this.id)
+  .then(data => 
+  {
+    this.usrs = data;
+    this.start=String(this.usrs.StartDate);
+    this.sp1=this.start.split("-");
+    this.tyear=parseInt(this.sp1[0]);
+    this.tmon=parseInt(this.sp1[1]);
+    if(this.tmon===1){
+      this.tmon=12
+    }
+    else{
+      this.tmon-1;
+    }
+    this.tdate=parseInt(this.sp1[2]);
+    this.end=this.usrs.EndDate;
+    this.sp2=this.end.split("-");
+   this.far=parseInt(this.sp2[0]);
+   this.tar=parseInt(this.sp2[1]);
+   if(this.tar==1)
+   {
+    this.tar=12
    }
+   else
+   {
+    this.tar=this.tar-1;
+   }
+   this.fdate=parseInt(this.sp2[2]);
+   
+   this.options = 
+   {
+    disableWeeks:[0,6],
+    from:new Date(this.tyear,this.tmon,this.tdate),
+    to:new Date(this.far,this.tar,this.fdate)
+   }
+  
+  });
+}
 
+onChange($event)
+{
+  this.navCtrl.setRoot(TimesheetPage, {
+  data: moment(this.date).format("YYYY-MM-DD") });
+}
 
-
+ionViewDidLoad() 
+{
+  console.log('ionViewDidLoad PendingPage');
+}
 }

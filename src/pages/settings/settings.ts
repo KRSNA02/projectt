@@ -83,11 +83,56 @@ export class SettingsPage {
 
 
   }
+  deletime()
+  {
+    let alert = this.alertCtrl.create({
+      title: 'Delete An Element',
+      subTitle: 'To delete an element in timesheet swipe left near the hours list which you want to delete and press delete button',
+      buttons: ['Dismiss']
+    });
+    alert.present();
 
 
+  }
+
+  chanpic()
+  {
+    let alert = this.alertCtrl.create({
+      title: 'Change Picture',
+      subTitle: 'To change the profile or cover picture press the button at the right bottom corner of Home Page and select the required option',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+
+
+  }
+  Addarecord()
+  {
+    let alert = this.alertCtrl.create({
+      title: 'Add Record',
+      subTitle: 'To add a record in timesheet go to pending page from side menu and select the required date. Then select on the required job to add the number  of hours for that particular date.',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+
+
+  }
+
+  savesum()
+  {
+    let alert = this.alertCtrl.create({
+      title: 'Button',
+      subTitle: 'SAVE- The details will be saved and can be edited. SUBMIT- The details will be submitted and cannot be edited.',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
+    
   }
 
 }
